@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!-- Marker file indicating JSF should be enabled -->
+<faces-config
+        xmlns="https://jakarta.ee/xml/ns/jakartaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+        https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_4_0.xsd"
+        version="4.0">
+    <navigation-rule>
+        <from-view-id>/sichtung.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{sichtungEingang.sichtungMeldungAbschliessen()}</from-action>
+            <from-outcome>meldungErfolg</from-outcome>
+            <to-view-id>/meldungErfolg.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{sichtungEingang.sichtungMeldungAbschliessen()}</from-action>
+            <from-outcome>meldungFehler</from-outcome>
+            <to-view-id>/meldungFehler.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-action>#{bergungEingang.bergungMeldungAbschliessen()}</from-action>
+            <from-outcome>meldungErfolg</from-outcome>
+            <to-view-id>/meldungErfolg.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{bergungEingang.bergungMeldungAbschliessen()}</from-action>
+            <from-outcome>meldungFehler</from-outcome>
+            <to-view-id>/meldungFehler.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-action>#{bergeplanEingang.bergeplanMeldungAbschliessen()}</from-action>
+            <from-outcome>meldungErfolg</from-outcome>
+            <to-view-id>/meldungErfolg.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{bergeplanEingang.bergeplanMeldungAbschliessen()}</from-action>
+            <from-outcome>meldungFehler</from-outcome>
+            <to-view-id>/meldungFehler.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>

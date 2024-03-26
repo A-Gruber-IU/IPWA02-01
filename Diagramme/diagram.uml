@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="353.5" y="2619.0">ghostnets.NetzDAO</node>
+    <node x="1714.5" y="2654.5">ghostnets.BergungMeldungDAO</node>
+    <node x="622.0" y="4020.5">ghostnets.DatenAnsicht</node>
+    <node x="1581.0" y="2824.5">ghostnets.BergungMeldung</node>
+    <node x="1773.0" y="3986.0">ghostnets.BergungEingang</node>
+    <node x="1144.5" y="2643.0">ghostnets.BergeplanMeldungDAO</node>
+    <node x="61.5" y="1276.5">ghostnets.Person</node>
+    <node x="1001.0" y="2850.0">ghostnets.BergeplanMeldung</node>
+    <node x="902.0" y="2653.5">ghostnets.SessionData</node>
+    <node x="101.0" y="1686.0">ghostnets.SichtungMeldung</node>
+    <node x="686.0" y="2922.5">ghostnets.PersonDAO</node>
+    <node x="113.0" y="2923.0">ghostnets.SichtungMeldungDAO</node>
+    <node x="75.0" y="2122.0">ghostnets.Netz</node>
+    <node x="1408.0" y="3474.0">ghostnets.BergeplanEingang</node>
+    <node x="403.5" y="3292.5">ghostnets.KartenAnsicht</node>
+    <node x="72.5" y="3914.0">ghostnets.SichtungEingang</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ghostnets.Netz" target="ghostnets.SichtungMeldung" relationship="TO_MANY">
+      <point x="-81.5" y="-189.0" />
+      <point x="156.5" y="2091.0" />
+      <point x="158.0" y="2091.0" />
+      <point x="158.0" y="2051.0" />
+      <point x="159.5" y="2051.0" />
+      <point x="-58.5" y="165.0" />
+    </edge>
+    <edge source="ghostnets.SichtungEingang" target="ghostnets.SichtungMeldung" relationship="TO_ONE">
+      <point x="0.0" y="-237.0" />
+      <point x="218.0" y="3891.0" />
+      <point x="98.0" y="3891.0" />
+      <point x="98.0" y="3871.0" />
+      <point x="58.0" y="3871.0" />
+      <point x="58.0" y="2091.0" />
+      <point x="158.0" y="2091.0" />
+      <point x="158.0" y="2051.0" />
+      <point x="159.5" y="2051.0" />
+      <point x="-58.5" y="165.0" />
+    </edge>
+    <edge source="ghostnets.BergeplanMeldung" target="ghostnets.Netz" relationship="TO_ONE">
+      <point x="0.0" y="-141.0" />
+      <point x="1118.0" y="2571.0" />
+      <point x="238.0" y="2571.0" />
+      <point x="0.0" y="189.0" />
+    </edge>
+    <edge source="ghostnets.SichtungMeldung" target="ghostnets.Netz" relationship="TO_ONE">
+      <point x="58.5" y="165.0" />
+      <point x="276.5" y="2091.0" />
+      <point x="319.5" y="2091.0" />
+      <point x="81.5" y="-189.0" />
+    </edge>
+    <edge source="ghostnets.BergeplanEingang" target="ghostnets.BergeplanMeldung" relationship="TO_ONE">
+      <point x="0.0" y="-117.0" />
+      <point x="1558.0" y="3231.0" />
+      <point x="1118.0" y="3231.0" />
+      <point x="0.0" y="141.0" />
+    </edge>
+    <edge source="ghostnets.KartenAnsicht" target="ghostnets.SichtungMeldungDAO" relationship="TO_ONE">
+      <point x="0.0" y="-298.5" />
+      <point x="558.0" y="3271.0" />
+      <point x="298.0" y="3271.0" />
+      <point x="0.0" y="68.0" />
+    </edge>
+    <edge source="ghostnets.SichtungEingang" target="ghostnets.Netz" relationship="TO_ONE">
+      <point x="0.0" y="-237.0" />
+      <point x="218.0" y="3891.0" />
+      <point x="98.0" y="3891.0" />
+      <point x="98.0" y="2591.0" />
+      <point x="238.0" y="2591.0" />
+      <point x="0.0" y="189.0" />
+    </edge>
+    <edge source="ghostnets.BergungEingang" target="ghostnets.BergungMeldung" relationship="TO_ONE">
+      <point x="0.0" y="-165.0" />
+      <point x="1918.0" y="3191.0" />
+      <point x="1698.0" y="3191.0" />
+      <point x="0.0" y="166.5" />
+    </edge>
+    <edge source="ghostnets.KartenAnsicht" target="ghostnets.SessionData" relationship="TO_ONE">
+      <point x="0.0" y="-298.5" />
+      <point x="558.0" y="3251.0" />
+      <point x="978.0" y="3251.0" />
+      <point x="0.0" y="57.5" />
+    </edge>
+    <edge source="ghostnets.BergeplanEingang" target="ghostnets.SessionData" relationship="TO_ONE">
+      <point x="0.0" y="-117.0" />
+      <point x="1558.0" y="3411.0" />
+      <point x="978.0" y="3411.0" />
+      <point x="0.0" y="57.5" />
+    </edge>
+    <edge source="ghostnets.DatenAnsicht" target="ghostnets.NetzDAO" relationship="TO_ONE">
+      <point x="0.0" y="-130.5" />
+      <point x="738.0" y="3271.0" />
+      <point x="658.0" y="3271.0" />
+      <point x="658.0" y="3131.0" />
+      <point x="558.0" y="3131.0" />
+      <point x="558.0" y="2831.0" />
+      <point x="498.0" y="2831.0" />
+      <point x="0.0" y="92.0" />
+    </edge>
+    <edge source="ghostnets.SichtungMeldung" target="ghostnets.Person" relationship="TO_ONE">
+      <point x="0.0" y="-165.0" />
+      <point x="218.0" y="1651.0" />
+      <point x="178.0" y="1651.0" />
+      <point x="0.0" y="154.5" />
+    </edge>
+    <edge source="ghostnets.BergeplanEingang" target="ghostnets.BergeplanMeldungDAO" relationship="TO_ONE">
+      <point x="0.0" y="-117.0" />
+      <point x="1558.0" y="3231.0" />
+      <point x="1338.0" y="3231.0" />
+      <point x="0.0" y="68.0" />
+    </edge>
+    <edge source="ghostnets.SichtungEingang" target="ghostnets.NetzDAO" relationship="TO_ONE">
+      <point x="0.0" y="-237.0" />
+      <point x="218.0" y="3891.0" />
+      <point x="98.0" y="3891.0" />
+      <point x="98.0" y="3091.0" />
+      <point x="558.0" y="3091.0" />
+      <point x="558.0" y="2831.0" />
+      <point x="498.0" y="2831.0" />
+      <point x="0.0" y="92.0" />
+    </edge>
+    <edge source="ghostnets.SichtungEingang" target="ghostnets.SichtungMeldungDAO" relationship="TO_ONE">
+      <point x="0.0" y="-237.0" />
+      <point x="218.0" y="3891.0" />
+      <point x="98.0" y="3891.0" />
+      <point x="98.0" y="3071.0" />
+      <point x="298.0" y="3071.0" />
+      <point x="0.0" y="68.0" />
+    </edge>
+    <edge source="ghostnets.BergeplanEingang" target="ghostnets.PersonDAO" relationship="TO_ONE">
+      <point x="0.0" y="-117.0" />
+      <point x="1558.0" y="3451.0" />
+      <point x="818.0" y="3451.0" />
+      <point x="0.0" y="68.5" />
+    </edge>
+    <edge source="ghostnets.SichtungEingang" target="ghostnets.PersonDAO" relationship="TO_ONE">
+      <point x="0.0" y="-237.0" />
+      <point x="218.0" y="3891.0" />
+      <point x="98.0" y="3891.0" />
+      <point x="98.0" y="3111.0" />
+      <point x="818.0" y="3111.0" />
+      <point x="0.0" y="68.5" />
+    </edge>
+    <edge source="ghostnets.SichtungEingang" target="ghostnets.Person" relationship="TO_ONE">
+      <point x="0.0" y="-237.0" />
+      <point x="218.0" y="3891.0" />
+      <point x="98.0" y="3891.0" />
+      <point x="98.0" y="3871.0" />
+      <point x="18.0" y="3871.0" />
+      <point x="18.0" y="1651.0" />
+      <point x="178.0" y="1651.0" />
+      <point x="0.0" y="154.5" />
+    </edge>
+    <edge source="ghostnets.BergungEingang" target="ghostnets.SessionData" relationship="TO_ONE">
+      <point x="0.0" y="-165.0" />
+      <point x="1918.0" y="3211.0" />
+      <point x="978.0" y="3211.0" />
+      <point x="0.0" y="57.5" />
+    </edge>
+    <edge source="ghostnets.KartenAnsicht" target="ghostnets.NetzDAO" relationship="TO_ONE">
+      <point x="0.0" y="-298.5" />
+      <point x="558.0" y="2831.0" />
+      <point x="498.0" y="2831.0" />
+      <point x="0.0" y="92.0" />
+    </edge>
+    <edge source="ghostnets.BergungEingang" target="ghostnets.BergungMeldungDAO" relationship="TO_ONE">
+      <point x="0.0" y="-165.0" />
+      <point x="1918.0" y="3191.0" />
+      <point x="1898.0" y="3191.0" />
+      <point x="0.0" y="56.5" />
+    </edge>
+    <edge source="ghostnets.BergungEingang" target="ghostnets.PersonDAO" relationship="TO_ONE">
+      <point x="0.0" y="-165.0" />
+      <point x="1918.0" y="3431.0" />
+      <point x="818.0" y="3431.0" />
+      <point x="0.0" y="68.5" />
+    </edge>
+    <edge source="ghostnets.DatenAnsicht" target="ghostnets.Netz" relationship="TO_MANY">
+      <point x="0.0" y="-130.5" />
+      <point x="738.0" y="3271.0" />
+      <point x="658.0" y="3271.0" />
+      <point x="658.0" y="2591.0" />
+      <point x="238.0" y="2591.0" />
+      <point x="0.0" y="189.0" />
+    </edge>
+    <edge source="ghostnets.BergeplanEingang" target="ghostnets.Person" relationship="TO_ONE">
+      <point x="0.0" y="-117.0" />
+      <point x="1558.0" y="1651.0" />
+      <point x="178.0" y="1651.0" />
+      <point x="0.0" y="154.5" />
+    </edge>
+    <edge source="ghostnets.BergeplanMeldung" target="ghostnets.Person" relationship="TO_ONE">
+      <point x="0.0" y="-141.0" />
+      <point x="1118.0" y="1651.0" />
+      <point x="178.0" y="1651.0" />
+      <point x="0.0" y="154.5" />
+    </edge>
+    <edge source="ghostnets.BergungMeldung" target="ghostnets.Netz" relationship="TO_ONE">
+      <point x="0.0" y="-166.5" />
+      <point x="1698.0" y="2551.0" />
+      <point x="238.0" y="2551.0" />
+      <point x="0.0" y="189.0" />
+    </edge>
+    <edge source="ghostnets.BergungEingang" target="ghostnets.Person" relationship="TO_ONE">
+      <point x="0.0" y="-165.0" />
+      <point x="1918.0" y="3191.0" />
+      <point x="2098.0" y="3191.0" />
+      <point x="2098.0" y="1651.0" />
+      <point x="178.0" y="1651.0" />
+      <point x="0.0" y="154.5" />
+    </edge>
+    <edge source="ghostnets.BergungMeldung" target="ghostnets.Person" relationship="TO_ONE">
+      <point x="0.0" y="-166.5" />
+      <point x="1698.0" y="1651.0" />
+      <point x="178.0" y="1651.0" />
+      <point x="0.0" y="154.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.2851213282247765" showDependencies="true" x="1068.0" y="2842.0" />
+  <SelectedNodes>
+    <node>ghostnets.DatenAnsicht</node>
+    <node>ghostnets.KartenAnsicht</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="jakarta.faces.core">
+
+<f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="author" content="Andreas Gruber"/>
+        <title>GhostNets</title>
+        <meta name="description"
+              content="Wir tracken Geisternetze, damit das Fischsterben ein Ende hat."/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <h:outputStylesheet library="webjars" name="primeflex/3.3.1/primeflex.min.css"/>
+    </h:head>
+
+    <h:body>
+
+        <!--Navigationsleiste-->
+        <div class="grid">
+            <h:form class="col-12">
+                <p:growl id="messages"/>
+                <p:menubar>
+                    <p:menuitem url="home.xhtml" value="Startseite" icon="pi pi-home"/>
+                    <p:menuitem url="karte.xhtml" value="Karte" icon="pi pi-map"/>
+                    <p:menuitem url="daten.xhtml" value="Datenbank" icon="pi pi-database"/>
+                    <p:menuitem url="sichtung.xhtml" value="Netzmeldung" icon="pi pi-map-marker"/>
+                    <p:menuitem url="faq.xhtml" value="FAQ" icon="pi pi-info-circle"/>
+                </p:menubar>
+            </h:form>
+        </div>
+
+        <h:form enctype="multipart/form-data">
+            <div class="ui-fluid formgrid grid ml-3">
+                <div class="formgrid grid">
+                    <div class="field col-5">
+                        <p:outputLabel for="vorname" value="Vorname"/>
+                        <p:inputText type="text" rows="1" id="vorname" value="#{sichtungEingang.vorname}"/>
+                    </div>
+                    <div class="field col-5">
+                        <p:outputLabel for="nachname" value="Nachname"/>
+                        <p:inputText type="text" rows="1" id="nachname" value="#{sichtungEingang.nachname}"/>
+                    </div>
+                    <div class="field col-5">
+                        <p:outputLabel for="telefon" value="Telefonnummer (mit Landesvorwahl)"/>
+                        <p:inputMask id="telefon" value="#{sichtungEingang.telefonNr}"
+                                     mask="+999[9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9]"
+                                     validateMask="true"/>
+                    </div>
+                    <div class="field col-5">
+                        <p:outputLabel for="zeit" value="Sichtungszeitpunkt (GMT+0)"/>
+                        <p:datePicker id="zeit" required="true" value="#{sichtungEingang.zeitpunktSichtung}"
+                                      showTime="true"
+                                      pattern="dd.MM.yyyy - hh:mm"/>
+                    </div>
+                    <div class="field col-5">
+                        <p:outputLabel for="lat" value="Breitengrad (dezimal)"/>
+                        <p:inputNumber id="lat" required="true" minValue="-90" maxValue="90"
+                                       value="#{sichtungEingang.lat}"
+                                       decimalPlaces="5"/>
+                    </div>
+                    <div class="field col-5">
+                        <p:outputLabel for="lng" value="Längengrad (dezimal)"/>
+                        <p:inputNumber id="lng" required="true" minValue="-179.99999" maxValue="180"
+                                       value="#{sichtungEingang.lng}"
+                                       decimalPlaces="5"/>
+                    </div>
+                    <div class="field col-5">
+                        <p:outputLabel for="groesse" value="Durchmesser (ca. in Meter)"/>
+                        <p:inputNumber id="groesse" required="true" minValue="1" maxValue="10000" rows="1"
+                                       decimalPlaces="0" value="#{sichtungEingang.durchmesser}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="flex align-content-center flex-wrap ml-3">
+                <p:commandButton id="senden" value="Senden"
+                                 action="#{sichtungEingang.sichtungMeldungAbschliessen()}"/>
+            </div>
+            <br/>
+            <br/>
+            <p class="text-lg ml-3 w-10">Zur Umrechnung können die Koordinaten unten in Grad, Minuten und Sekunden eingetragen werden.</p>
+            <div class="ui-fluid formgrid grid ml-3">
+                <div class="formgrid grid">
+                    <div class="field col-5 md:col-2">
+                        <p:outputLabel for="lgrad" value="Längengrad" class="col-fixed" style="width:100px"/>
+                        <p:inputNumber id="lgrad" minValue="-180" maxValue="180" value="#{lngRechner.grad}" symbol=" °"
+                                       symbolPosition="s" emptyValue="always" decimalPlaces="0">
+                            <p:ajax event="keyup" update="lerg"/>
+                        </p:inputNumber>
+                    </div>
+                    <div class="field col-5 md:col-2">
+                        <p:outputLabel for="lmin" value="Minuten" class="col-fixed" style="width:100px"/>
+                        <p:inputNumber id="lmin" minValue="0" maxValue="59" value="#{lngRechner.minuten}"
+                                       symbol=" &apos;"
+                                       symbolPosition="s" emptyValue="always" decimalPlaces="0">
+                            <p:ajax event="keyup" update="lerg"/>
+                        </p:inputNumber>
+                    </div>
+                    <div class="field col-5 md:col-2">
+                        <p:outputLabel for="lsek" value="Sekunden" class="col-fixed" style="width:100px"/>
+                        <p:inputNumber id="lsek" minValue="0" maxValue="59.999" value="#{lngRechner.sekunden}"
+                                       symbol=" &apos;&apos;"
+                                       symbolPosition="s" emptyValue="always" decimalPlaces="2">
+                            <p:ajax event="keyup" update="lerg"/>
+                        </p:inputNumber>
+                    </div>
+                    <div class="field col-5 md:col-3">
+                        <p:outputLabel for="lerg" value="Ergebnis" class="col-fixed" style="width:100px"/>
+                        <p:inputNumber id="lerg" disabled="true" decimalPlaces="5"
+                                       value="${lngRechner.umrechnenZuDezimal()}"/>
+                    </div>
+                </div>
+                <div class="formgrid grid">
+                    <div class="field col-5 md:col-2">
+                        <p:outputLabel for="bgrad" value="Breitengrad" class="col-fixed" style="width:100px"/>
+                        <p:inputNumber id="bgrad" minValue="-90" maxValue="90" value="#{latRechner.grad}" symbol=" °"
+                                       symbolPosition="s" emptyValue="always" decimalPlaces="0">
+                            <p:ajax event="keyup" update="berg"/>
+                        </p:inputNumber>
+                    </div>
+                    <div class="field col-5 md:col-2">
+                        <p:outputLabel for="bmin" value="Minuten" class="col-fixed" style="width:100px"/>
+                        <p:inputNumber id="bmin" minValue="0" maxValue="59" value="#{latRechner.minuten}"
+                                       symbol=" &apos;"
+                                       symbolPosition="s" emptyValue="always" decimalPlaces="0">
+                            <p:ajax event="keyup" update="berg"/>
+                        </p:inputNumber>
+                    </div>
+                    <div class="field col-5 md:col-2">
+                        <p:outputLabel for="bsek" value="Sekunden" class="col-fixed" style="width:100px"/>
+                        <p:inputNumber id="bsek" minValue="0" maxValue="59.999" value="#{latRechner.sekunden}"
+                                       symbol=" &apos;&apos;"
+                                       symbolPosition="s" emptyValue="always" decimalPlaces="2">
+                            <p:ajax event="keyup" update="berg"/>
+                        </p:inputNumber>
+                    </div>
+                    <div class="field col-5 md:col-3">
+                        <p:outputLabel for="berg" value="Ergebnis" class="col-fixed" style="width:100px"/>
+                        <p:inputNumber id="berg" disabled="true" decimalPlaces="5"
+                                       value="${latRechner.umrechnenZuDezimal()}"/>
+                    </div>
+                </div>
+                <p>Für Umrechnung aus anderen Koordinatensystemen kann ein <a
+                        href="https://www.koordinaten-umrechner.de/">Online-Koordinatenumrechner</a> verwendet werden.
+                </p>
+            </div>
+        </h:form>
+    </h:body>
+</f:view>
+</html>

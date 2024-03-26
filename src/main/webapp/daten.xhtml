@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="jakarta.faces.core">
+<f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="author" content="Andreas Gruber"/>
+        <title>GhostNets</title>
+        <meta name="description"
+              content="Wir tracken Geisternetze, damit das Fischsterben ein Ende hat."/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <h:outputStylesheet library="webjars" name="primeflex/3.3.1/primeflex.min.css"/>
+
+    </h:head>
+
+    <h:body>
+
+        <!--Navigationsleiste-->
+        <div class="grid">
+            <h:form class="col-12">
+                <p:growl id="messages"/>
+                <p:menubar>
+                    <p:menuitem url="home.xhtml" value="Startseite" icon="pi pi-home"/>
+                    <p:menuitem url="karte.xhtml" value="Karte" icon="pi pi-map"/>
+                    <p:menuitem url="daten.xhtml" value="Datenbank" icon="pi pi-database"/>
+                    <p:menuitem url="sichtung.xhtml" value="Netzmeldung" icon="pi pi-map-marker"/>
+                    <p:menuitem url="faq.xhtml" value="FAQ" icon="pi pi-info-circle"/>
+                </p:menubar>
+            </h:form>
+        </div>
+
+        <div class="card">
+            <h5>Datenbank</h5>
+            <h:form>
+                <p:dataTable var="netzZeile" value="#{datenAnsicht.netze}" widgetVar="netzTabelle"
+                             emptyMessage="Keine Netze gefunden"
+                             filteredValue="#{datenAnsicht.gefilterteNetze}">
+
+                    <f:facet name="header">
+                        <div class="flex align-items-center justify-content-between">
+                            <span>Netze</span>
+                        </div>
+
+                    </f:facet>
+
+                    <p:column headerText="Längengrad" sortBy="#{netzZeile.lng}" filterBy="#{netzZeile.lng}">
+                        <h:outputText value="#{netzZeile.lng}" />
+                    </p:column>
+
+                    <p:column headerText="Breitengrad" sortBy="#{netzZeile.lat}" filterBy="#{netzZeile.lat}">
+                        <h:outputText value="#{netzZeile.lat}" />
+                    </p:column>
+
+                    <p:column headerText="Durchmesser" sortBy="#{netzZeile.durchmesser}" filterBy="#{netzZeile.durchmesser}">
+                        <h:outputText value="#{netzZeile.durchmesser}" />
+                    </p:column>
+
+                    <p:column headerText="Status" sortBy="#{netzZeile.status}" filterBy="#{datenAnsicht.statusTextAbfrage(netzZeile.status)}">
+                        <h:outputText value="#{datenAnsicht.statusTextAbfrage(netzZeile.status)}" />
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </div>
+
+    </h:body>
+</f:view>
+</html>

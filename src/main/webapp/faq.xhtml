@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="jakarta.faces.core">
+<f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="author" content="Andreas Gruber"/>
+        <title>GhostNets</title>
+        <meta name="description"
+              content="Wir tracken Geisternetze, damit das Fischsterben ein Ende hat."/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <h:outputStylesheet library="webjars" name="primeflex/3.3.1/primeflex.min.css"/>
+
+    </h:head>
+
+    <h:body>
+
+        <!--Navigationsleiste-->
+        <div class="grid">
+            <h:form class="col-12">
+                <p:growl id="messages"/>
+                <p:menubar>
+                    <p:menuitem url="home.xhtml" value="Startseite" icon="pi pi-home"/>
+                    <p:menuitem url="karte.xhtml" value="Karte" icon="pi pi-map"/>
+                    <p:menuitem url="daten.xhtml" value="Datenbank" icon="pi pi-database"/>
+                    <p:menuitem url="sichtung.xhtml" value="Netzmeldung" icon="pi pi-map-marker"/>
+                    <p:menuitem url="faq.xhtml" value="FAQ" icon="pi pi-info-circle"/>
+                </p:menubar>
+            </h:form>
+        </div>
+
+        <div class="card mt-3">
+            <p:accordionPanel widgetVar="basic">
+                <p:tab title="Was ist das hier?">
+                    <p class="m-0">
+                        Das ist eine Fallstudie zur Programmierung industrieller Informationssysteme mit Jakarta EE im Rahmen meines Studiums.
+                    </p>
+                </p:tab>
+                <p:tab title="Was ist mit dem Datenschutz?">
+                    <p class="m-0">
+                        Wenn ihr euren Namen oder Telefonnummer eingebt sind sie in der Datenbank. Bitte gebt also keine echten Personendaten ein.
+                    </p>
+                </p:tab>
+                <p:tab title="Sind Geisternetze ein wirkliches Problem?">
+                    <p class="m-0">
+                        Ja, sie sind ein wirkliches Problem und wenn ihr dagegen etwas tun wollt, informiert euch bei echten Organisationen wie dem NABU oder WWF.
+                    </p>
+                </p:tab>
+                <p:tab title="Gibt es die Netze auf der Karte echt?">
+                    <p class="m-0">
+                        Nein der Datenbestand ist rein fiktiv.
+                    </p>
+                </p:tab>
+            </p:accordionPanel>
+        </div>
+
+        <div class="flex justify-content-center flex-wrap">
+            <div class="col-3 mt-2">
+                <img class="max-w-full" src="resources/img/NetGhost_2.png"
+                     alt="Bild eines Netzes, das wie ein Geist geformt ist."/>
+            </div>
+        </div>
+
+    </h:body>
+</f:view>
+</html>

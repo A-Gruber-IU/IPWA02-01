@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core">
+<f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="author" content="Andreas Gruber"/>
+    <title>GhostNets</title>
+    <meta name="description"
+          content="Wir tracken Geisternetze, damit das Fischsterben ein Ende hat."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <h:outputStylesheet library="webjars" name="primeflex/3.3.1/primeflex.min.css"/>
+
+</h:head>
+
+<h:body>
+
+    <!--Navigationsleiste-->
+    <div class="grid">
+        <h:form class="col-12">
+            <p:growl id="messages"/>
+            <p:menubar>
+                <p:menuitem url="home.xhtml" value="Startseite" icon="pi pi-home"/>
+                <p:menuitem url="karte.xhtml" value="Karte" icon="pi pi-map"/>
+                <p:menuitem url="daten.xhtml" value="Datenbank" icon="pi pi-database"/>
+                <p:menuitem url="sichtung.xhtml" value="Netzmeldung" icon="pi pi-map-marker"/>
+                <p:menuitem url="faq.xhtml" value="FAQ" icon="pi pi-info-circle"/>
+            </p:menubar>
+        </h:form>
+    </div>
+
+<div class="grid">
+    <div class="lg:col-6 col-12">
+        <div class="text-center text-xl">
+            <h1 class="font-bold">GhostNets</h1>
+            <h3>Wir setzen dem Fischsterben ein Ende!</h3>
+            <p>Jedes Jahr sterben millionen Fische einen sinnlosen und grausamen Tod in umhertreibenden Fischernetzen.
+                Weltweit treiben Millionen alte Fischernetze durch die Meere, allein in der Ostsee gehen jedes Jahr bis zu 10.000 Netzteile verloren.
+                Es dauert hunderte von Jahren bis sich die Netze zersetzen.</p>
+            <p>Wir tracken die Netze und erleichtern die Organisation bei der Bergung durch Freiwillige.
+                Helft uns im Kampf gegen herrenlos umhertreibende Geisternetze.</p>
+            <p>Über die Navigationsleiste kommt ihr auf die Kartenansicht und könnt gemeldete Netze einsehen.
+                Wenn ihr ein neues Netz gesichtet habt könnt ihr das unter "Netzmeldung" melden.
+                Seid ihr an der Koordinate eines Netzes und habt festgestellt, dass es nicht mehr vor Ort ist, könnt ihr es dort auch als verschollen melden.
+                Wenn ihr eine Bergung plant, könnt ihr das unter "Bergung" melden, damit die Bergungsfahrten besser koordiniert werden können.
+                Eine erfolgreich durchgeführte Bergung könnt ihr dort auch melden, damit das Netz aus dem System genommen werden kann.</p>
+            <p:linkButton href="https://www.nabu.de/natur-und-landschaft/meere/lebensraum-meer/gefahren/24489.html"
+                          value="Weitere Informationen zu Geisternetzen (NABU)" icon="pi pi-globe"/>
+        </div>
+    </div>
+    <div class="lg:col-6 col-12">
+        <img class="max-w-full" src="resources/img/NetGhost_1.png"
+             alt="Bild eines Netzes, das wie ein Geist geformt ist."/>
+    </div>
+</div>
+
+</h:body>
+</f:view>
+</html>

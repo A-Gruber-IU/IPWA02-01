@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="jakarta.faces.core">
+<f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="author" content="Andreas Gruber"/>
+        <title>GhostNets</title>
+        <meta name="description"
+              content="Wir tracken Geisternetze, damit das Fischsterben ein Ende hat."/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <h:outputStylesheet library="webjars" name="primeflex/3.3.1/primeflex.min.css"/>
+
+    </h:head>
+
+    <h:body>
+
+        <!--Navigationsleiste-->
+        <div class="grid">
+            <h:form class="col-12">
+                <p:growl id="messages"/>
+                <p:menubar>
+                    <p:menuitem url="home.xhtml" value="Startseite" icon="pi pi-home"/>
+                    <p:menuitem url="karte.xhtml" value="Karte" icon="pi pi-map"/>
+                    <p:menuitem url="daten.xhtml" value="Datenbank" icon="pi pi-database"/>
+                    <p:menuitem url="sichtung.xhtml" value="Netzmeldung" icon="pi pi-map-marker"/>
+                    <p:menuitem url="faq.xhtml" value="FAQ" icon="pi pi-info-circle"/>
+                </p:menubar>
+            </h:form>
+        </div>
+
+        <script type="text/javascript"
+                src="https://maps.google.com/maps/api/js?key={Google_API_Key}"></script>
+
+        <h:form>
+            <div class="card">
+                <p:gmap center="30, -50" zoom="2" type="ROADMAP" style="width:100%;height:500px"
+                        model="#{kartenAnsicht.meinModell}">
+                    <p:ajax event="overlaySelect" listener="#{kartenAnsicht.onMarkerSelect}"/>
+                    <p:gmapInfoWindow id="infoWindow">
+                        <p:outputPanel style="text-align: center; color: black; display: block; margin: auto">
+                            <h:outputText value="#{kartenAnsicht.marker.latlng}"/>
+                            <br/>
+                            <h:outputText value="#{kartenAnsicht.umwandlungMarkerDaten(kartenAnsicht.marker.data)}"/>
+                            <br/>
+                            <h3><strong>Melden:</strong></h3>
+                            <!--Status: 1 = gemeldet, 2 = bergung bevorstehend, 3 = geborgen, 4 = verschollen-->
+                            <div>
+                                <p:commandButton styleClass="ui-button-info mx-1 my-1" icon="pi pi-eye-slash"
+                                                 rendered="${(kartenAnsicht.statusZahlAbfrage(kartenAnsicht.marker.title) == 1 || (kartenAnsicht.statusZahlAbfrage(kartenAnsicht.marker.title) == 2))}"
+                                                 value="Verschollen"
+                                                 action="#{kartenAnsicht.setVerschollenMeldenTrue(kartenAnsicht.marker.data)}"/>
+                                <p:commandButton styleClass="ui-button-danger mx-1 my-1" icon="pi pi-eye"
+                                                 rendered="${(kartenAnsicht.statusZahlAbfrage(kartenAnsicht.marker.title) == 1 || (kartenAnsicht.statusZahlAbfrage(kartenAnsicht.marker.title) == 2)
+                                                  || (kartenAnsicht.statusZahlAbfrage(kartenAnsicht.marker.title) == 4))}"
+                                                 value="Erneute Sichtung"
+                                                 action="#{kartenAnsicht.setErneuteSichtungMeldenTrue(kartenAnsicht.marker.data)}"/>
+                                <p:commandButton styleClass="ui-button-warning mx-1 my-1" icon="pi pi-flag"
+                                                 rendered="${(kartenAnsicht.statusZahlAbfrage(kartenAnsicht.marker.title) == 1)}"
+                                                 value="Geplante Bergung"
+                                                 action="#{kartenAnsicht.setGeplanteBergungMeldenTrue(kartenAnsicht.marker.data)}"/>
+                                <p:commandButton styleClass="ui-button-success mx-1 my-1" icon="pi pi-check"
+                                                 rendered="${(kartenAnsicht.statusZahlAbfrage(kartenAnsicht.marker.title) == 2)}"
+                                                 value="Erfolgte Bergung"
+                                                 action="#{kartenAnsicht.setErfolgteBergungMeldenTrue(kartenAnsicht.marker.data)}"/>
+                            </div>
+                        </p:outputPanel>
+                    </p:gmapInfoWindow>
+                </p:gmap>
+            </div>
+        </h:form>
+
+        <h:form enctype="multipart/form-data" rendered="#{kartenAnsicht.verschollenMelden}">
+            <!-- @ToDo -->
+            <div class="flex justify-content-center flex-wrap">
+                <div class="col-12 text-center">
+                    <h2>Netz verschollen melden:</h2>
+                </div>
+                <div class="col-12 text-center">
+                    <h4>ToDo: Diese Funktion muss erst noch implementiert werden</h4>
+                </div>
+                <div class="col-3 mt-2">
+                    <img class="max-w-full" src="resources/img/NetGhost_3.png"
+                         alt="Bild eines Netzes, das wie ein Geist geformt ist."/>
+                </div>
+            </div>
+        </h:form>
+        <h:form enctype="multipart/form-data" rendered="#{kartenAnsicht.erneuteSichtungMelden}">
+            <!-- @ToDo -->
+            <div class="flex justify-content-center flex-wrap">
+                <div class="col-12 text-center">
+                    <h2>Erneute Sichtung des Netzes Melden:</h2>
+                </div>
+                <div class="col-12 text-center">
+                    <h4>ToDo: Diese Funktion muss erst noch implementiert werden</h4>
+                </div>
+                <div class="col-3 mt-2">
+                    <img class="max-w-full" src="resources/img/NetGhost_4.png"
+                         alt="Bild eines Netzes, das wie ein Geist geformt ist."/>
+                </div>
+            </div>
+        </h:form>
+        <h:form enctype="multipart/form-data" rendered="#{kartenAnsicht.geplanteBergungMelden}">
+            <div class="flex justify-content-center flex-wrap">
+                <div class="col-12 text-center">
+                    <h2>Geplante Bergung Melden:</h2>
+                </div>
+                <div class="formgrid grid">
+                    <div class="field col-5">
+                        <p:outputLabel for="bergeplan_netzID" value="Netz-ID"/>
+                        <p:inputText type="number" rows="1" id="bergeplan_netzID" value="#{sessionData.netzIDMarker}" disabled="true" />
+                    </div>
+                    <div class="field col-5">
+                        <p:outputLabel for="bergeplan_vorname" value="Vorname"/>
+                        <p:inputText type="text" rows="1" id="bergeplan_vorname" value="#{bergeplanEingang.vorname}" required="true" />
+                    </div>
+                    <div class="field col-5">
+                        <p:outputLabel for="bergeplan_nachname" value="Nachname"/>
+                        <p:inputText type="text" rows="1" id="bergeplan_nachname" value="#{bergeplanEingang.nachname}" required="true" />
+                    </div>
+                    <div class="field col-5">
+                        <p:outputLabel for="bergeplan_telefon" value="Telefonnummer (mit Landesvorwahl)"/>
+                        <p:inputMask id="bergeplan_telefon" value="#{bergeplanEingang.telefonNr}"
+                                     mask="+9999999[9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9]"
+                                     validateMask="true" required="true" />
+                    </div>
+                    <div class="flex align-content-center flex-wrap ml-3">
+                        <p:commandButton id="bergeplan_senden" value="Senden"
+                                         action="#{bergeplanEingang.bergeplanMeldungAbschliessen()}"/>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+        <h:form enctype="multipart/form-data" rendered="#{kartenAnsicht.erfolgteBergungMelden}">
+            <div class="flex justify-content-center flex-wrap">
+                <div class="col-12 text-center">
+                    <h2>Erfolgte Bergung Melden:</h2>
+                </div>
+                <div class="field col-5">
+                    <p:outputLabel for="bergung_netzID" value="Netz-ID"/>
+                    <p:inputText type="number" rows="1" id="bergung_netzID" value="#{sessionData.netzIDMarker}" disabled="true" />
+                </div>
+                <div class="field col-5">
+                    <p:outputLabel for="bergung_vorname" value="Vorname"/>
+                    <p:inputText type="text" rows="1" id="bergung_vorname" value="#{bergungEingang.vorname}" required="true" />
+                </div>
+                <div class="field col-5">
+                    <p:outputLabel for="bergung_nachname" value="Nachname"/>
+                    <p:inputText type="text" rows="1" id="bergung_nachname" value="#{bergungEingang.nachname}" required="true" />
+                </div>
+                <div class="field col-5">
+                    <p:outputLabel for="bergung_telefon" value="Telefonnummer (mit Landesvorwahl)"/>
+                    <p:inputMask id="bergung_telefon" value="#{bergungEingang.telefonNr}"
+                                 mask="+9999999[9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9]"
+                                 validateMask="true" required="true" />
+                </div>
+                <div class="field col-5">
+                    <p:outputLabel for="bergung_zeit" value="Bergungszeitpunkt (GMT+0)"/>
+                    <p:datePicker id="bergung_zeit" required="true" value="#{bergungEingang.zeitpunktBergung}"
+                                  showTime="true"
+                                  pattern="dd.MM.yyyy - hh:mm"/>
+                </div>
+                <div class="flex align-content-center flex-wrap ml-3">
+                    <p:commandButton id="bergung_senden" value="Senden"
+                                     action="#{bergungEingang.bergungMeldungAbschliessen()}"/>
+                </div>
+            </div>
+        </h:form>
+    </h:body>
+</f:view>
+</html>
